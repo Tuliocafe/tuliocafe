@@ -6,53 +6,41 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import tuliocafe.dao.CargoDao;
-import tuliocafe.domain.Cargo;
+import tuliocafe.dao.ClienteDao;
+import tuliocafe.domain.Cliente;
 
 @Service @Transactional(readOnly = false)
-public class CargoServiceImpl implements CargoService {
+public class ClienteServiceImpl implements ClienteService {
 
 	@Autowired
-	private CargoDao dao;
+	private ClienteDao dao;
 	
 	@Override
-	public void salvar(Cargo cargo) {
-		dao.save(cargo);
+	public void salvar(Cliente cliente) {
+		dao.save(cliente);
 		
 	}
 
 	@Override
-	public void editar(Cargo cargo) {
-		dao.update(cargo);
-		
+	public void editar(Cliente cliente) {
+		dao.update(cliente);
 	}
 
 	@Override
 	public void excluir(Long id) {
 		dao.delete(id);
-		
 	}
 
 	@Override @Transactional(readOnly = true)
-	public Cargo buscarPorId(Long id) {
+	public Cliente buscarPorId(Long id) {
 		
 		return dao.findById(id);
 	}
 
 	@Override @Transactional(readOnly = true)
-	public List<Cargo> buscarTodos() {
+	public List<Cliente> buscarTodos() {
 		
 		return dao.findAll();
 	}
-
-	@Override
-	public boolean cargoTemFuncionario(Long id) {
-		
-		if(buscarPorId(id).getFuncionarios().isEmpty()) {
-		return false;
-		}
-		return true;
-	}
-	
 
 }

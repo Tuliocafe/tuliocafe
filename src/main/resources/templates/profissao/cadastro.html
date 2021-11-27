@@ -9,13 +9,13 @@
 	                <ul class="navbar-nav mr-auto">
 	                    <li class="nav-item active">
 	                        <i class="oi oi-caret-right"></i>
-	                        <span>Cadastrar Cargos</span>
+	                        <span>Cadastrar Profissao</span>
 	                    </li>
 	                </ul>
 	            </div>
-	            <a class="btn btn-primary btn-md" href="/cargos/listar" role="button">
+	            <a class="btn btn-primary btn-md" href="/profissoes/listar" role="button">
 	                <span class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"></span>
-	                <span>Listar Cargos</span>
+	                <span>Listar Profissao</span>
 	            </a>
 	        </nav>
 	
@@ -23,17 +23,17 @@
 	        	
 	        	<div th:replace="fragments/alert"></div>
 	           
-	            <form th:action="${cargo.id == null} ? @{/cargos/salvar} : @{/cargos/editar}" th:object="${cargo}" method="POST">
+	            <form th:action="${profissao.id == null} ? @{/profissoes/salvar} : @{/profissoes/editar}" th:object="${profissao}" method="POST">
 	                <div class="form-row">
 	                    <div class="form-group col-md-6">
-	                        <label for="nome">Nome do Cargo</label>
-	                        <input type="text" class="form-control" id="nome" placeholder="Nome Cargo" autofocus="autofocus" th:field="*{nome}"/>
+	                        <label for="nome">Nome do Profissao</label>
+	                        <input type="text" class="form-control" id="nome" placeholder="Nome Profissao" autofocus="autofocus" th:field="*{nome}"/>
 	                    </div>
 	                    <div class="form-group col-md-4">
 	                        <label for="empresa">Empresa</label>
 	                        <select id="empresa" class="form-control" th:field="*{empresa}">
 	                            <option value="">Selecione</option>
-	                            <option th:each="e: ${empresa}" th:value="${e.id}" th:text="${e.nome}">Administração</option>
+	                            <option th:each="e: ${empresas}" th:value="${e.id}" th:text="${e.nome}">Administração</option>
 	                        </select>
 	                    </div>
 	                </div>

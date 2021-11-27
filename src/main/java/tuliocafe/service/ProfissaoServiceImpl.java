@@ -6,41 +6,53 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import tuliocafe.dao.FuncionarioDao;
-import tuliocafe.domain.Funcionario;
+import tuliocafe.dao.ProfissaoDao;
+import tuliocafe.domain.Profissao;
 
 @Service @Transactional(readOnly = false)
-public class FuncionarioServiceImpl implements FuncionarioService {
+public class ProfissaoServiceImpl implements ProfissaoService {
 
 	@Autowired
-	private FuncionarioDao dao;
+	private ProfissaoDao dao;
 	
 	@Override
-	public void salvar(Funcionario funcionario) {
-		dao.save(funcionario);
+	public void salvar(Profissao profissao) {
+		dao.save(profissao);
 		
 	}
 
 	@Override
-	public void editar(Funcionario funcionario) {
-		dao.update(funcionario);
+	public void editar(Profissao profissao) {
+		dao.update(profissao);
+		
 	}
 
 	@Override
 	public void excluir(Long id) {
 		dao.delete(id);
+		
 	}
 
 	@Override @Transactional(readOnly = true)
-	public Funcionario buscarPorId(Long id) {
+	public Profissao buscarPorId(Long id) {
 		
 		return dao.findById(id);
 	}
 
 	@Override @Transactional(readOnly = true)
-	public List<Funcionario> buscarTodos() {
+	public List<Profissao> buscarTodos() {
 		
 		return dao.findAll();
 	}
+
+	@Override
+	public boolean profissaoTemCliente(Long id) {
+		
+		if(buscarPorId(id).getClientes().isEmpty()) {
+		return false;
+		}
+		return true;
+	}
+	
 
 }

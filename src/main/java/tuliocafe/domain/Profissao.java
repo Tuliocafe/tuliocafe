@@ -6,8 +6,8 @@ import javax.persistence.*;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "CARGOS")
-public class Cargo extends AbstractEntity<Long> {
+@Table(name = "PROFISSOES")
+public class Profissao extends AbstractEntity<Long> {
 
 	@Column(name ="nome", nullable = false, unique = true, length = 60)
 	private String nome;
@@ -18,8 +18,8 @@ public class Cargo extends AbstractEntity<Long> {
 	@JoinColumn(name = "id_empresa_fk")
 	private Empresa empresa;
 
-	@OneToMany(mappedBy = "cargo")
-	private List<Funcionario> funcionarios;
+	@OneToMany(mappedBy = "profissao")
+	private List<Cliente> clientes;
 
 	public String getNome() {
 		return nome;
@@ -45,14 +45,14 @@ public class Cargo extends AbstractEntity<Long> {
 
 
 
-	public List<Funcionario> getFuncionarios() {
-		return funcionarios;
+	public List<Cliente> getClientes() {
+		return clientes;
 	}
 
 
 
-	public void setFuncionarios(List<Funcionario> funcionarios) {
-		this.funcionarios = funcionarios;
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
 	}
 	
 	

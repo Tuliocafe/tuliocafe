@@ -46,8 +46,8 @@ public class EmpresaServiceImpl implements EmpresaService {
 	}
 
 	@Override
-	public boolean empresaTemCargos(Long id) {
-		if (buscarPorId(id).getCargos().isEmpty()) {
+	public boolean empresaTemProfissoes(Long id) {
+		if (buscarPorId(id).getProfissoes().isEmpty()) {
 			return false;
 		}
 	return true;

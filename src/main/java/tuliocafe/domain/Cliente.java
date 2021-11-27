@@ -13,8 +13,8 @@ import org.springframework.format.annotation.NumberFormat.Style;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "FUNCIONARIOS")
-public class Funcionario extends AbstractEntity<Long> {
+@Table(name = "CLIENTES")
+public class Cliente extends AbstractEntity<Long> {
 	
 	@Column(nullable = false, unique = true)
 	private String nome;
@@ -38,8 +38,8 @@ public class Funcionario extends AbstractEntity<Long> {
 	private Endereco endereco;
 	
 	@ManyToOne
-	@JoinColumn(name = "cargo_id_fk")	
-	private Cargo cargo;
+	@JoinColumn(name = "profissao_id_fk")	
+	private Profissao profissao;
 
 	public String getNome() {
 		return nome;
@@ -81,12 +81,12 @@ public class Funcionario extends AbstractEntity<Long> {
 		this.endereco = endereco;
 	}
 
-	public Cargo getCargo() {
-		return cargo;
+	public Profissao getProfissao() {
+		return profissao;
 	}
 
-	public void setCargo(Cargo cargo) {
-		this.cargo = cargo;
+	public void setprofissao(Profissao profissao) {
+		this.profissao = profissao;
 	}
 	
 	

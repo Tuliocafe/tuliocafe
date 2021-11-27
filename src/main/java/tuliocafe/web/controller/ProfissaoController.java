@@ -12,37 +12,37 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import tuliocafe.domain.Cargo;
+import tuliocafe.domain.Profissao;
 import tuliocafe.domain.Empresa;
-import tuliocafe.service.CargoService;
+import tuliocafe.service.ProfissaoService;
 import tuliocafe.service.EmpresaService;
 
 @Controller
-@RequestMapping("/cargos")
-public class CargoController {
+@RequestMapping("/profissoes")
+public class ProfissaoController {
 	
 	@Autowired
-	private CargoService cargoService;
+	private ProfissaoService profissaoService;
 	
 	@Autowired
 	private EmpresaService empresaService;
 	
 	@GetMapping("/cadastrar")
-	public String cadastrar(Cargo cargo) {
-		return "/cargo/cadastro";
+	public String cadastrar(Profissao profissao) {
+		return "/profissao/cadastro";
 	}
 	
 	@GetMapping("/listar")
 	public String listar(ModelMap model) {
-		model.addAttribute("cargos", cargoService.buscarTodos());
-		return "/cargo/lista";
+		model.addAttribute("profissoes", profissaoService.buscarTodos());
+		return "/profissao/lista";
 	}
 
 	@PostMapping("/salvar")
-	public String Salvar(Cargo cargo, RedirectAttributes attr) {
-		cargoService.salvar(cargo);
-		attr.addFlashAttribute("success", "Cargo salvo com sucesso");
-		return "redirect:/cargos/cadastrar";
+	public String Salvar(Profissao profissao, RedirectAttributes attr) {
+		profissaoService.salvar(profissao);
+		attr.addFlashAttribute("success", "profissao salvo com sucesso");
+		return "redirect:/profissoes/cadastrar";
 	}
 	
 	@ModelAttribute("empresas")
@@ -52,27 +52,27 @@ public class CargoController {
 	
 	@GetMapping("/editar/{id}")
 	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
-		model.addAttribute("cargo", cargoService.buscarPorId(id));
-		return "/cargo/cadastro";
+		model.addAttribute("profissao", profissaoService.buscarPorId(id));
+		return "/profissao/cadastro";
 		
 	}
 	
 	@PostMapping("/editar")
-	public String editar(Cargo cargo, RedirectAttributes attr) {
-		cargoService.editar(cargo);
-		attr.addFlashAttribute("success", "Cargo alterado com sucesso");
-		return "redirect:/cargos/cadastrar";
+	public String editar(Profissao profissao, RedirectAttributes attr) {
+		profissaoService.editar(profissao);
+		attr.addFlashAttribute("success", "Profissao alterado com sucesso");
+		return "redirect:/Profissaos/cadastrar";
 	}
 	
 	@GetMapping("/excluir/{id}")
 	public String excluir(@PathVariable("id") Long id, ModelMap model) {
 		
-		if(cargoService.cargoTemFuncionario(id)) {
-			model.addAttribute("fail","cargo não removido Possui cargo(s) vinculado(s).");
+		if(profissaoService.profissaoTemCliente(id)) {
+			model.addAttribute("fail","profissao não removido Possui cliente(s) vinculado(s).");
 			
 		}else {
-			cargoService.excluir(id);
-			model.addAttribute("success","cargo excluido com sucesso");
+			profissaoService.excluir(id);
+			model.addAttribute("success","profissao excluido com sucesso");
 		}
 		return listar(model); 
 	

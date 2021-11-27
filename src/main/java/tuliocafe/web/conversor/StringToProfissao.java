@@ -4,18 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import tuliocafe.domain.Cargo;
-import tuliocafe.service.CargoService;
+import tuliocafe.domain.Profissao;
+import tuliocafe.service.ProfissaoService;
 
 @Component
-public class StringToCargo implements Converter<String, Cargo> {
+public class StringToProfissao implements Converter<String, Profissao> {
 
 	
 	@Autowired
-	private CargoService service;
+	private ProfissaoService service;
 	
 	@Override
-	public Cargo convert(String text) {
+	public Profissao convert(String text) {
 		if(text.isEmpty()) {
 			return null;
 		}
