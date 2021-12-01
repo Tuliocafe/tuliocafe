@@ -21,7 +21,7 @@ import tuliocafe.service.EmpresaService;
 import tuliocafe.service.ClienteService;
 
 @Controller
-@RequestMapping("/funcionarios")
+@RequestMapping("/clientes")
 public class ClienteController {
 	
 	@Autowired
@@ -32,7 +32,7 @@ public class ClienteController {
 	
 	@GetMapping("/cadastrar")
 	public String cadastrar(Cliente cliente) {
-		return "/funcionario/cadastro";
+		return "/cliente/cadastro";
 	}
 	
 	@GetMapping("/listar")
@@ -49,7 +49,7 @@ public class ClienteController {
 	}
 	
 	@ModelAttribute("profissoes")
-	public List<Profissao> getProfissaos(){
+	public List<Profissao> getProfissoes(){
 		return profissaoService.buscarTodos();
 	}
 	
